@@ -1,0 +1,19 @@
+textarea {
+    min-height: 700px;
+}
+.read{
+    background-color: #d7d7d7;
+    border-color: solid 5px black;
+    
+}
+.unread{
+    background-color: white;
+    border-color: solid 5px black;
+}
+.hh{
+    padding-left: 50px;
+}
+.timestamp {
+    float: right;
+    text-align: right;
+  }

@@ -1,0 +1,69 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3e567c;">
+        <img src="logo.jpg" alt="Logo" style="width:40px;">
+        <a class="navbar-brand" id="#">Mail</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" id="inbox">Inbox</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" id="compose">Compose <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" id="sent">Sent</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" id="archived">Archived</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" id="archived">{{ request.user.email }}</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+    </nav>
+
+    <div id="emails-view">
+    </div>
+
+    <div id="email-detail-view">
+    </div>
+
+    <div id="compose-view">
+        <h3>New Email</h3>
+        <form id="compose-form">
+            <div class="form-group">
+                From: <input disabled class="form-control" value="{{ request.user.email }}">
+            </div>
+            <div class="form-group">
+                To: <input id="compose-recipients" class="form-control">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="compose-subject" placeholder="Subject">
+            </div>
+            <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
+            <input type="submit" class="btn btn-primary"/>
+        </form>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}
